@@ -55,9 +55,6 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
     -   Stores the restaurant inventory CSV file. The file should have the following structure:
 
         csv
-
-        Copy code
-
         `NUM,ITEM #,CATEGORY,DESCRIPTION,BRAND,PACK/SIZE
         3,340403,ALMONDS,ALMONDS SLICED BLANCHED,HEMISPHERE,1/25LB`
 
@@ -78,9 +75,6 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 2.  Example structure:
 
     csv
-
-    Copy code
-
     `NUM,ITEM #,CATEGORY,DESCRIPTION,BRAND,PACK/SIZE
     3,340403,ALMONDS,ALMONDS SLICED BLANCHED,HEMISPHERE,1/25LB
     5,192402,ANCHOVIES,ANCHOVIES IN SOY OIL,PACKER,24/28 OZ`
@@ -116,9 +110,6 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 1.  Create an EventBridge rule with the cron expression:
 
     plaintext
-
-    Copy code
-
     `cron(0 20 ? * 3 *)`
 
 2.  Set the target as your Lambda function.
@@ -138,8 +129,6 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 -   Example match message:
 
     plaintext
-
-    Copy code
 
     `Weekly FDA Recall Alert: Current Inventory Contains Recalled Items
 
