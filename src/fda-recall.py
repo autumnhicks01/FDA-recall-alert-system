@@ -5,7 +5,6 @@ import boto3
 from datetime import datetime, timedelta, timezone
 import urllib.request
 
-# Initialize AWS clients
 s3 = boto3.client("s3")
 sns = boto3.client("sns")
 
@@ -16,11 +15,10 @@ def load_inventory_from_s3(bucket_name, file_key):
         obj = s3.get_object(Bucket=bucket_name, Key=file_key)
         content = obj['Body'].read().decode('utf-8').splitlines()
         
-        # Parse CSV with DictReader
+        # Parse CSV 
         reader = csv.DictReader(content)
         inventory = []
         for row in reader:
-            # Normalize keys and skip rows with missing DESCRIPTION or BRAND
             normalized_row = {key.strip().upper(): value.strip() for key, value in row.items()}
             if not normalized_row.get("DESCRIPTION") or not normalized_row.get("BRAND"):
                 print(f"Skipping invalid row: {normalized_row}")
@@ -78,11 +76,8 @@ def find_recalled_inventory(recall_data, inventory_data):
 # Publish SNS message
 def publish_sns_message(sns_topic_arn, subject, message):
     try:
-        # Add header to the message
         header = "Weekly FDA Recall Alert: Current Inventory Contains Recalled Items\n\n"
         full_message = header + message
-
-        # Publish the message
         sns.publish(TopicArn=sns_topic_arn, Message=full_message, Subject=subject)
         print(f"SNS message published successfully: {subject}")
     except Exception as e:
@@ -97,12 +92,10 @@ def lambda_handler(event, context):
     if not (s3_bucket and s3_key and sns_topic_arn):
         return {"statusCode": 500, "body": "Environment variables are missing"}
 
-    # Load inventory data from S3
     inventory_data = load_inventory_from_s3(s3_bucket, s3_key)
     if not inventory_data:
         return {"statusCode": 500, "body": "Failed to load inventory data"}
 
-    # Fetch FDA recall data
     recall_data = fetch_fda_recall_data()
     if not recall_data:
         publish_sns_message(sns_topic_arn, "FDA Recall Updates", "No FDA recall data available.")
