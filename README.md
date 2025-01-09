@@ -27,6 +27,8 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 -   **Amazon SNS**: Sends notifications about FDA recalls and inventory matches.
 -   **Amazon EventBridge**: Schedules the Lambda function to run weekly.
 -   **FDA Open API**: Retrieves recall data.
+-   
+![Cloud Architecture Diagram](https://github.com/FDA-recall-alert-system/images/Cloud Architecture.drawio.png "Cloud Architecture Diagram")
 
 * * * * *
 
