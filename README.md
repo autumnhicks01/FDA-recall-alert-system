@@ -27,7 +27,7 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 -   **Amazon SNS**: Sends notifications about FDA recalls and inventory matches.
 -   **Amazon EventBridge**: Schedules the Lambda function to run weekly.
 -   **FDA Open API**: Retrieves recall data.
--   
+  
 
 ![Alt Text](https://github.com/autumnhicks01/FDA-recall-alert-system/blob/main/CloudArchitecture.drawio.png "Cloud Architecture Diagram")
 
@@ -55,7 +55,7 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
         -   Publishes results to SNS.
 2.  **S3 Bucket**:
 
-    -   Stores the restaurant inventory CSV file. The file should have the following structure:
+    -   Stores the restaurant inventory CSV file. Feel free to use the CSV files in the data folder to test inventory data. The file should have the following structure:
 
         csv
         `NUM,ITEM #,CATEGORY,DESCRIPTION,BRAND,PACK/SIZE
@@ -74,7 +74,7 @@ This project uses a Python script deployed in AWS Lambda and the FDA's open API 
 
 #### **Step 1: Prepare the Inventory File**
 
-1.  Create a CSV file named `restaurant-inventory.csv` with your inventory data.
+1.  Create a CSV file named `restaurant-inventory.csv` with your inventory data. Feel free to use the CSV in the data folder of this project. 
 2.  Example structure:
 
     csv
